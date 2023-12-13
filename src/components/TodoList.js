@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import TodoForm from './TodoForm';
 import Todo from './Todo';
 import { v4 as uuid } from 'uuid';
+import { useSelector, useDispatch } from 'react-redux';
+import { add, remove } from '../actions/todosActions';
 
 const TodoList = () => {
-    const [todos, setTodos] = useState([]);
+    const todos = useSelector((state) => state.todos);
+    //const [todos, setTodos] = useState([]);
+
+    const dispatch = useDispatch();
 
     const renderTodos = () => {
         return (
@@ -22,20 +27,13 @@ const TodoList = () => {
     };
 
     const deleteTodo = (todoId) => {
-        // Run setTodos again
-        setTodos((todos) =>
-            // Filter the todos array from state
-            todos.filter((todo) => {
-                // If the ID matches, remove it!
-                return todo.id !== todoId;
-            })
-        );
+        dispatch(remove(todoId));
     };
 
     /** Add new todo to list. */
     const addTodo = (todo) => {
-        let newTodo = { ...todo, id: uuid() };
-        setTodos((todos) => [...todos, newTodo]);
+        const newTodo = { ...todo, id: uuid() };
+        dispatch(add(newTodo));
     };
 
     return (
