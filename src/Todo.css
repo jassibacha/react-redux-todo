@@ -1,0 +1,10 @@
+.Todo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    flex-wrap: nowrap;
+    padding: 10px;
+    background-color: #f9f6ee;
+    border-bottom: 1px solid #d4cebd;
+}
