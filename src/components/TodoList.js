@@ -7,7 +7,6 @@ import { add, remove } from '../actions/todosActions';
 
 const TodoList = () => {
     const todos = useSelector((state) => state.todos);
-    //const [todos, setTodos] = useState([]);
 
     const dispatch = useDispatch();
 
